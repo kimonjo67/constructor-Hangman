@@ -1,4 +1,4 @@
-var Letter = function (ltr) {
+var Letter = function (lettter) {
     // property to store the actual letter
     this.letter = ltr;
     // property/boolean if the letter can be shown
