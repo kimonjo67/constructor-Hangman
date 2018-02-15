@@ -1,0 +1,26 @@
+{
+  "name": "constructor-hangman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimonjo67/constructor-Hangman.git"
+  },
+  "keywords": [
+    "project"
+  ],
+  "author": "Sam Mwangi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimonjo67/constructor-Hangman/issues"
+  },
+  "homepage": "https://github.com/kimonjo67/constructor-Hangman#readme",
+  "dependencies": {
+    "inquirer": "^5.1.0",
+    "is-letter": "^1.1.1"
+  }
+}
