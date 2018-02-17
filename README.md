@@ -1,4 +1,5 @@
 # Hangman Game
+Play the letter guessing game, instructions below.
 
 # Description
 Created a hangman game ran through Node.js and empowered using JavaScript constructors.
