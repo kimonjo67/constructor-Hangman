@@ -20,7 +20,7 @@ function Word(wrd) {
     //found the current word
     this.didWeFindTheWord = function () {
         if (this.letters.every(function (lttr) {
-            return lttr.appear === true;
+            return lttr.show === true;
         })) {
             this.wordFound = true;
             return true;
@@ -33,7 +33,7 @@ function Word(wrd) {
         //iterates through each letter to see if it matches the guessed letter
         this.letters.forEach(function (lttr) {
             if (lttr.letter === guessedLetter) {
-                lttr.appear = true;
+                lttr.show = true;
                 whatToReturn++;
             }
         })

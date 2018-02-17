@@ -1,11 +1,13 @@
 //require inquirer
 var inquirer = require('inquirer');
+//require is-letter
 var isLetter = require('is-letter');
 //require objects/exports
 var Word = require('./words.js');
 
+//word band array
 newWord = {
-    wordList: ['SUPER', 'BAT'],
+    wordList: ['LOVE', 'DONE', 'GET', 'PEACE'],
 };
 
 //set the maxListener
@@ -17,13 +19,11 @@ var game = {
     guessesRemaining: 10,
     //empty array to hold letters guessed by user. And checks if the user guessed the letter already
     guessedLetters: [],
-    //index to display graphic
-    display: 0,
     currentWord: null,
-    //asks user if they are ready to play
+    //Prompt for start game
     startGame: function () {
         var that = this;
-        //clears guessedLetters before a new game starts if it's not already empty.
+        //clears guessedLetters
         if (this.guessedLetters.length > 0) {
             this.guessedLetters = [];
         }
@@ -31,20 +31,19 @@ var game = {
         inquirer.prompt([{
             name: "play",
             type: "confirm",
-            message: "Ready to play?"
+            message: "Play?"
         }]).then(function (answer) {
             if (answer.play) {
                 that.newGame();
             } else {
-                console.log("Fine, I didn't want to play anyway..");
+                console.log("Okay, GOODBYE :( :(");
             }
         })
     },
-    //if they want to play starts new game.
+    //starts new game.
     newGame: function () {
         if (this.guessesRemaining === 10) {
-            console.log("Okay! Here we go!");
-            console.log('*****************');
+            console.log('-----------------------');
             //generates random number based on the wordBank
             var randNum = Math.floor(Math.random() * this.wordBank.length);
             this.currentWord = new Word(this.wordBank[randNum]);
@@ -91,28 +90,27 @@ var game = {
                 var found = that.currentWord.checkIfLetterFound(letterReturned);
                 //if none were found tell user they were wrong
                 if (found === 0) {
-                    console.log('Nope! You guessed wrong.');
+                    console.log('You guessed wrong.');
                     that.guessesRemaining--;
-                    that.display++;
                     console.log('Guesses remaining: ' + that.guessesRemaining);
 
-                    console.log('\n*******************');
+                    console.log('-------------------');
                     console.log(that.currentWord.wordRender());
-                    console.log('\n*******************');
+                    console.log('--------------------');
 
                     console.log("Letters guessed: " + that.guessedLetters);
                 } else {
-                    console.log('Yes! You guessed right!');
+                    console.log('You guessed right!');
                     //checks to see if user won
                     if (that.currentWord.didWeFindTheWord() === true) {
                         console.log(that.currentWord.wordRender());
                         console.log('Congratulations! You won the game!!!');
-                        // that.startGame();
+                        // this.startGame();
                     } else {
                         // display the user how many guesses remaining
                         console.log('Guesses remaining: ' + that.guessesRemaining);
                         console.log(that.currentWord.wordRender());
-                        console.log('\n*******************');
+                        console.log('-------------------');
                         console.log("Letters guessed: " + that.guessedLetters);
                     }
                 }
@@ -120,7 +118,7 @@ var game = {
                     that.keepPromptingUser();
                 } else if (that.guessesRemaining === 0) {
                     console.log('Game over!');
-                    console.log('The word you were guessing was: ' + that.currentWord.word);
+                    console.log('Answer: ' + that.currentWord.word);
                 }
             } else {
                 console.log("You've guessed that letter already. Try again.")
